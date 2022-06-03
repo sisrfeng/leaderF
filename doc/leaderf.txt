@@ -1,5 +1,5 @@
 *leaderf.txt*   Quickly locate files, buffers, mrus, tags, ... in large project.
-*leaderf* *LeaderF*
+*leaderf*  *LeaderF*
 ==============================================================================
 /      '7MMF'                            '7MM                `7MM"""YMM      /
 /        MM                                MM                  MM    `7      /
@@ -105,9 +105,10 @@ g:Lf_CursorBlink                                *g:Lf_CursorBlink*
 
 g:Lf_CacheDirectory                              *g:Lf_CacheDirectory*
     Set this option to change the location of the cache directory.
-    e.g. >
+    e.g.
+
     let g:Lf_CacheDirectory = '/root'
-<
+
     Default value is $HOME.
 
 g:Lf_NeedCacheTime                              *g:Lf_NeedCacheTime*
@@ -138,15 +139,17 @@ g:Lf_FollowLinks                                *g:Lf_FollowLinks*
 
 g:Lf_WildIgnore                                 *g:Lf_WildIgnore*
     Specify the files and directories you want to exclude while indexing.
-    Default value is: >
+    Default value is:
+
     let g:Lf_WildIgnore = {
             \ 'dir': [],
             \ 'file': []
             \}
-<
+
     Here uses the Unix shell-style wildcards, which are not the same as
     regular expressions. The special characters used in shell-style wildcards
-    are: >
+    are:
+
     Pattern  |          Meaning
     -------------------------------------------
     *        | matches everything
@@ -154,13 +157,14 @@ g:Lf_WildIgnore                                 *g:Lf_WildIgnore*
     [seq]    | matches any character in seq
     [!seq]   | matches any character not in seq
     -------------------------------------------
-<
-    For example, you can set as below: >
+
+    For example, you can set as below:
+
     let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
-<
+
 g:Lf_DelimiterChar                              *g:Lf_DelimiterChar*
     In NameOnly mode, if you want to refine the result by typing extra
     characters to match the directory, type this character first.
@@ -169,9 +173,10 @@ g:Lf_DelimiterChar                              *g:Lf_DelimiterChar*
 g:Lf_MruFileExclude                             *g:Lf_MruFileExclude*
     Files you don't want LeaderF to record.
     See |g:Lf_WildIgnore| for the usage of pattern.
-    e.g. >
+    e.g.
+
     let g:Lf_MruFileExclude = ['*.so']
-<
+
     Default value is [].
 
 g:Lf_MruMaxFiles                                *g:Lf_MruMaxFiles*
@@ -189,29 +194,34 @@ g:Lf_NumberOfHighlight                          *g:Lf_NumberOfHighlight*
 
 g:Lf_DisableStl                                 *g:Lf_DisableStl*
     Don't let LeaderF modify statusline.
-    e.g. >
+    e.g.
+
     let g:Lf_DisableStl = 1
-<
+
     g:Lf_DisableStl will not be set by default.
 
 g:Lf_StlColorscheme                             *g:Lf_StlColorscheme*
     You can configure the colorscheme of statusline for LeaderF.
-    e.g. >
+    e.g.
+
     let g:Lf_StlColorscheme = 'powerline'
-<
-    The colorscheme files can be found in the directory >
+
+    The colorscheme files can be found in the directory
+
     "LeaderF/autoload/leaderf/colorscheme/"
-<
+
     Default value is 'default'.
 
 g:Lf_StlSeparator                               *g:Lf_StlSeparator*
     A Dictionary to store separators.
-    The default value is >
+    The default value is
+
     let g:Lf_StlSeparator = { 'left': '►', 'right': '◄', 'font': '' }
-<
-    If you don't like using separators, you can set the value as below: >
+
+    If you don't like using separators, you can set the value as below:
+
     let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-<
+
     You can also use the patched font you used for |vim-powerline| and |powerline|.
 
     The patched fonts for |powerline| are available at
@@ -221,28 +231,34 @@ g:Lf_StlSeparator                               *g:Lf_StlSeparator*
     https://github.com/Lokaltog/vim-powerline/tree/develop/fontpatcher
 
     If you have installed the patched font for |powerline|, following setting looks
-    nice. >
+    nice.
+
     let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-<
+
     If you have installed the patched font for |vim-powerline|, following setting
-    looks nice. >
+    looks nice.
+
     let g:Lf_StlSeparator = { 'left': '⮀', 'right': '⮂' }
-<
+
     If the statusline does not correctly show the special characters, use the
     unicode numbers.
-    For |powerline| font users: >
+    For |powerline| font users:
+
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2" }
-<
-    For |vim-powerline| font users: >
+
+    For |vim-powerline| font users:
+
     let g:Lf_StlSeparator = { 'left': "\u2b80", 'right': "\u2b82" }
-<
+
     If you haven't set the global option |guifont|, you can still use the patched
-    fonts, e.g., >
+    fonts, e.g.,
+
     let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
-<
+
 g:Lf_StlPalette                                 *g:Lf_StlPalette*
     This is a dictionary, you can customize the colorscheme using this option.
-    Default colorscheme is equivalent to the following setting: >
+    Default colorscheme is equivalent to the following setting:
+
     let g:Lf_StlPalette = {
             \   'stlName': {
             \       'gui': 'bold',
@@ -335,9 +351,10 @@ g:Lf_StlPalette                                 *g:Lf_StlPalette*
             \       'ctermbg': '149'
             \   }
             \ }
-<
+
     For example, if you want to change the color of 'stlName', you can configure
-    like this: >
+    like this:
+
     let g:Lf_StlPalette.stlName = {
             \       'gui': 'bold',
             \       'font': 'NONE',
@@ -347,31 +364,34 @@ g:Lf_StlPalette                                 *g:Lf_StlPalette*
             \       'ctermfg': '22',
             \       'ctermbg': '157'
             \ }
-<
-    or just change the color of GUI: >
+
+    or just change the color of GUI:
+
     let g:Lf_StlPalette.stlName = {
             \       'gui': 'bold',
             \       'font': 'NONE',
             \       'guifg': '#2F5C00',
             \       'guibg': '#BAFFA3'
             \ }
-<
+
 g:Lf_Ctags                                      *g:Lf_Ctags*
     Use this option to specify the ctags executable you use. If ctags is not
     in one of the directories in your $PATH environment variable, you should
-    set it by yourself. e.g., >
+    set it by yourself. e.g.,
+
     let g:Lf_Ctags = "/usr/local/universal-ctags/ctags"
-<
+
     Default value is "ctags".
 
 g:Lf_CtagsFuncOpts                              *g:Lf_CtagsFuncOpts*
     Use this option to specify the options of ctags to generate the tags of
-    functions. e.g., >
+    functions. e.g.,
+
     let g:Lf_CtagsFuncOpts = {
             \ 'c': '--c-kinds=fp',
             \ 'rust': '--rust-kinds=f',
             \ }
-<
+
 g:Lf_PreviewCode                                *g:Lf_PreviewCode*
     Use this option to specify whether to show the preview of the code the tag
     locates in when navigating the tags.
@@ -381,9 +401,10 @@ g:Lf_PreviewCode                                *g:Lf_PreviewCode*
 g:Lf_DefaultExternalTool                        *g:Lf_DefaultExternalTool*
     Use this option to specify the default external tool which is used to
     index the files. Possible values are 'rg', 'pt', 'ag', 'find'.
-    If you do not want to use the external tool: >
+    If you do not want to use the external tool:
+
     let g:Lf_DefaultExternalTool = ""
-<
+
     By default, use the external tool in the sequence of 'rg', 'pt', 'ag', 'find'
     if one is available. If none of the tools are available, falls back to the
     build-in python implementation which is a little slower.
@@ -395,7 +416,7 @@ g:Lf_UseVersionControlTool                      *g:Lf_UseVersionControlTool*
     e.g.
     use command `git ls-files` for git repository;
     use command `hg files` for hg repository.
-    Note: |g:Lf_WildIgnore| is ignored when using these commands.
+    |g:Lf_WildIgnore| is ignored when using these commands.
 
     Default value is 1.
 
@@ -405,16 +426,18 @@ g:Lf_ExternalCommand                            *g:Lf_ExternalCommand*
 
     Use "%s"(quotes are necessary for directory name with space in it) as the
     placeholder of the start directory.
-    e.g. >
+    e.g.
+
     let g:Lf_ExternalCommand = 'dir "%s" /s/b/a-d-h-s'       " On Windows
     let g:Lf_ExternalCommand = 'find "%s" -type f'           " On MacOSX/Linux
-<
-    Note: |g:Lf_UseVersionControlTool| and |g:Lf_DefaultExternalTool| are
+
+    |g:Lf_UseVersionControlTool| and |g:Lf_DefaultExternalTool| are
     ignored if this option is specified.
 
 g:Lf_PreviewResult                              *g:Lf_PreviewResult*
     This is a dictionary, indicates whether to enable the preview of the result.
-    Default value is: >
+    Default value is:
+
     let g:Lf_PreviewResult = {
             \ 'File': 0,
             \ 'Buffer': 0,
@@ -427,10 +450,11 @@ g:Lf_PreviewResult                              *g:Lf_PreviewResult*
             \ 'Rg': 0,
             \ 'Gtags': 0
             \}
-<
-    e.g., if you want to disable the preview of BufTag explorer: >
+
+    e.g., if you want to disable the preview of BufTag explorer:
+
     let g:Lf_PreviewResult = { 'BufTag': 0 }
-<
+
 g:Lf_RememberLastSearch                         *g:Lf_RememberLastSearch*
     This option specifies whether to remember the last search. If the value is
     1, the search string you typed during last search is still there when
@@ -448,7 +472,8 @@ g:Lf_NormalMap                                  *g:Lf_NormalMap*
     Use this option to customize the mappings in normal mode.
     The mapping with the key `"_"` applies to all categories.
     Also, `"_"` is overridden by the mapping of each category.
-    e.g., >
+    e.g.,
+
     let g:Lf_NormalMap = {
         \ "_":      [["<C-j>", "j"],
         \            ["<C-k>", "k"]
@@ -469,19 +494,21 @@ g:Lf_NormalMap                                  *g:Lf_NormalMap*
         \ "Self":   [],
         \ "Colorscheme": []
         \}
-<
+
 g:Lf_RootMarkers                                *g:Lf_RootMarkers*
     Use this option to set the root markers.
-    e.g., >
+    e.g.,
+
     let g:Lf_RootMarkers = ['.project', '.project2']
-<
+
     Default value is ['.git', '.hg', '.svn']
 
 g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*
     This option customizes LeaderF's working directory.
-    e.g., >
+    e.g.,
+
     let g:Lf_WorkingDirectoryMode = 'Ac'
-<
+
     c - the directory of the current working directory.(default)
     a - the nearest ancestor of current working directory that contains one of
         directories or files defined in |g:Lf_RootMarkers|. Fall back to 'c' if
@@ -493,22 +520,24 @@ g:Lf_WorkingDirectoryMode                       *g:Lf_WorkingDirectoryMode*
     F - if the current working directory is not the direct ancestor of current
         file, use the directory of the current file as LeaderF's working
         directory, otherwise, same as 'c'.
-    Note: if "f", "F" is included with "a" or "A", use the behavior of "f" or
+    If "f", "F" is included with "a" or "A", use the behavior of "f" or
     "F"(as a fallback) when a root can't be found.
 
 g:Lf_WorkingDirectory                           *g:Lf_WorkingDirectory*
     Set LeaderF's working directory. It will ignore the |g:Lf_RootMarkers| and
 	|g:Lf_WorkingDirectoryMode| option set.
-	e.g., >
+	e.g.,
+
 	let g:Lf_WorkingDirectory = finddir('.git', '.;')
-<
+
 g:Lf_CommandMap                                 *g:Lf_CommandMap*
     Use this option to customize the mappings inside LeaderF's
     prompt(|leaderf-prompt|).
     for example, if you want to change the default command <C-F> to <C-D> and
-    change the default command <ESC> to <C-A> and <C-B>: >
+    change the default command <ESC> to <C-A> and <C-B>:
+
     let g:Lf_CommandMap = {'<C-F>': ['<C-D>'], '<ESC>': ['<C-A>', '<C-B>']}
-<
+
 g:Lf_HideHelp                                   *g:Lf_HideHelp*
     To specify whether to show the hint "Press <F1> for help" in normal mode.
     You can set the value to 1 to hide the hint.
@@ -523,12 +552,13 @@ g:Lf_MruWildIgnore                              *g:Lf_MruWildIgnore*
     matches the patterns defined in it.
     See |g:Lf_WildIgnore| for the usage of pattern.
 
-    Default value is: >
+    Default value is:
+
     let g:Lf_MruWildIgnore = {
             \ 'dir': [],
             \ 'file': []
             \}
-<
+
 g:Lf_RecurseSubmodules                          *g:Lf_RecurseSubmodules*
     This option indicates whether to show the files in submodules of git
     repository. If the value is 1, it means git command has '--recurse-submodules'
@@ -551,20 +581,22 @@ g:Lf_HistoryExclude                             *g:Lf_HistoryExclude*
     This option indicates that do not display the historires that matches the
     patterns defined in it.
 
-    Default value is: >
+    Default value is:
+
     let g:Lf_HistoryExclude = {
             \ 'cmd': [],
             \ 'search': []
             \}
-<
+
     This is specified with a Python regular expression.
 
-    For example, you can set as below: >
+    For example, you can set as below:
+
     let g:Lf_HistoryExclude = {
             \ 'cmd': ['^w!?', '^q!?', '^.\s*$'],
             \ 'search': ['^Plug']
             \}
-<
+
 g:Lf_HistoryEditPromptIfEmpty                   *g:Lf_HistoryEditPromptIfEmpty*
     This option is used when the history (cmdHistory or searchHistory).
     If set to 1, when editing is started when there are 0 results, the text of
@@ -574,20 +606,22 @@ g:Lf_HistoryEditPromptIfEmpty                   *g:Lf_HistoryEditPromptIfEmpty*
 g:Lf_Rg                                         *g:Lf_Rg*
     Use this option to specify the rg executable you use. If rg is not
     in one of the directories in your $PATH environment variable, you should
-    set it by yourself. e.g., >
+    set it by yourself. e.g.,
+
     let g:Lf_Rg = 'C:\Windows\System32\rg.exe'
-<
+
     Default value is "rg".
 
 g:Lf_RgConfig                                   *g:Lf_RgConfig*
-    Specify a list of ripgrep configurations. For example, >
+    Specify a list of ripgrep configurations. For example,
+
     let g:Lf_RgConfig = [
         \ "--max-columns=150",
         \ "--type-add web:*.{html,css,js}*",
         \ "--glob=!git/*",
         \ "--hidden"
     \ ]
-<
+
     Default value is [].
 
 g:Lf_RgStorePattern                             *g:Lf_RgStorePattern*
@@ -623,15 +657,17 @@ g:Lf_NoChdir                                    *g:Lf_NoChdir*
     Default value is 1.
 
 g:Lf_Global                                      *g:Lf_Global*
-    Use this option to customize the global executable to use. e.g., >
+    Use this option to customize the global executable to use. e.g.,
+
     let g:Lf_Global = "/bin/global"
-<
+
     Default value is "global".
 
 g:Lf_Gtags                                       *g:Lf_Gtags*
-    Use this option to customize the global executable to use. e.g., >
+    Use this option to customize the global executable to use. e.g.,
+
     let g:Lf_Gtags = "/bin/gtags"
-<
+
     Default value is "gtags".
 
 g:Lf_GtagsAutoGenerate                          *g:Lf_GtagsAutoGenerate*
@@ -665,13 +701,14 @@ g:Lf_GtagsSource                                *g:Lf_GtagsSource*
 g:Lf_GtagsfilesCmd                              *g:Lf_GtagsfilesCmd*
     If |g:Lf_GtagsSource| is 2, use the command defined by this option to
     generate the target files.
-    Default value is: >
+    Default value is:
+
     let g:Lf_GtagsfilesCmd = {
             \ '.git': 'git ls-files --recurse-submodules',
             \ '.hg': 'hg files',
             \ 'default': 'rg --no-messages --files'
             \}
-<
+
     , which means use command `git ls-files --recurse-submodules` for git
     repository and `hg files` for hg repository, use `rg --no-messages --files`
     otherwise.
@@ -769,11 +806,12 @@ g:Lf_PopupWidth                                 *g:Lf_PopupWidth*
     If the value is a floating point number less than 1, it means the percentage
     of the width of the vim window.
 
-    For example, set the width to 3/4 of the screen's width: >
+    For example, set the width to 3/4 of the screen's width:
+
     let g:Lf_PopupWidth = &columns * 3 / 4
     or
     let g:Lf_PopupWidth = 0.75
-<
+
     Default value is 0.
 
 g:Lf_PopupHeight                                *g:Lf_PopupHeight*
@@ -785,11 +823,12 @@ g:Lf_PopupHeight                                *g:Lf_PopupHeight*
     If the value is a floating point number less than 1, it means the percentage
     of the height of the vim window.
 
-    For example, set the height to 30% of the vim's height: >
+    For example, set the height to 30% of the vim's height:
+
     let g:Lf_PopupHeight = float2nr(&lines * 0.3)
     or
     let g:Lf_PopupHeight = 0.3
-<
+
     Default value is 0.
 
 g:Lf_PopupPosition                              *g:Lf_PopupPosition*
@@ -828,12 +867,14 @@ g:Lf_PopupPreviewPosition                       *g:Lf_PopupPreviewPosition*
 
 g:Lf_PopupColorscheme                           *g:Lf_PopupColorscheme*
     You can configure the colorscheme of LeaderF in popup mode.
-    e.g. >
+    e.g.
+
     let g:Lf_PopupColorscheme = 'default'
-<
-    The colorscheme files can be found in the directory >
+
+    The colorscheme files can be found in the directory
+
     "LeaderF/autoload/leaderf/colorscheme/popup/"
-<
+
     You can also define the colorscheme by yourself, follow 'default.vim' and
     put it under "autoload/leaderf/colorscheme/popup/".
 
@@ -842,7 +883,8 @@ g:Lf_PopupColorscheme                           *g:Lf_PopupColorscheme*
 g:Lf_PopupPalette                               *g:Lf_PopupPalette*
     This is a dictionary, you can customize the colorscheme of popup mode using
     it.
-    Its structure is like below: >
+    Its structure is like below:
+
     let g:Lf_PopupPalette = {
         \  'light': {
         \      'Lf_hl_match': {
@@ -869,7 +911,7 @@ g:Lf_PopupPalette                               *g:Lf_PopupPalette*
         \         ...
         \      }
         \  }
-<
+
     All the highlight groups supported are defined in
     `LeaderF/autoload/leaderf/colorscheme/popup/default.vim`
 
@@ -895,12 +937,13 @@ g:Lf_PopupBorders                               *g:Lf_PopupBorders*
     Specifies a list of characters, defining the character to use for the
     top/right/bottom/left border, followed by the character to use for the
     topleft/topright/botright/botleft corner.
-    Example: >
+    Example:
+
     let g:Lf_PopupBorders = ["─","│","─","│","╭","╮","╯","╰"]
     let g:Lf_PopupBorders = ["─","│","─","│","┌","┐","┘","└"]
     let g:Lf_PopupBorders = ["━","┃","━","┃","┏","┓","┛","┗"]
     let g:Lf_PopupBorders = ["═","║","═","║","╔","╗","╝","╚"]
-<
+
     For some terminals, the non-ascii characters can not be displayed
     properly for borders, see https://github.com/neovim/neovim/issues/17996.
     To have a good display for non-ascii characters, perhaps you need to set
@@ -935,7 +978,8 @@ g:Lf_DevIconsFont                               *g:Lf_DevIconsFont*
 g:Lf_DevIconsPalette                            *g:Lf_DevIconsPalette*
     This is a dictionary with customizable icons highlights.
 
-    Its structure is like below: >
+    Its structure is like below:
+
     let g:Lf_DevIconsPalette = {
         \  'light': {
         \      '_': {
@@ -967,7 +1011,7 @@ g:Lf_DevIconsPalette                            *g:Lf_DevIconsPalette*
         \         ...
         \      }
         \  }
-<
+
     Key Description:
         `'_'` :       All icons with no customized highlights.
         `'default'` : General Icons.
@@ -982,17 +1026,19 @@ g:Lf_DevIconsPalette                            *g:Lf_DevIconsPalette*
 g:Lf_DevIconsExactSymbols                       *g:Lf_DevIconsExactSymbols*
     Dictionary mappings for exact file node matches
 
-    e.g.: >
+    e.g.:
+
     let g:Lf_DevIconsExactSymbols = { 'tags': '󿧸' }
-<
+
     Default value is `{}`
 
 g:Lf_DevIconsExtensionSymbols                   *g:Lf_DevIconsExtensionSymbols*
     Dictionary mappings for file extension matches
 
-    e.g.: >
+    e.g.:
+
     let g:Lf_DevIconsExtensionSymbols = { 'tmp': '󿦨' }
-<
+
     Default value is `{}`
 
 g:Lf_SpinSymbols                                *g:Lf_SpinSymbols*
@@ -1108,7 +1154,7 @@ Some handy maps for `Leaderf gtags`:
 | `<Plug>LeaderfGtagsSymbol`                   | Show <cword> or selected text reference to a symbol which has no definition.
 | `<Plug>LeaderfGtagsGrep`                     | Show all lines which match to the <cword> or selected text .
 
-Once LeaderF is launched:                       *prompt* *leaderf-prompt*
+Once LeaderF is launched:                       *prompt*  *leaderf-prompt*
     <C-C>, <ESC> : quit from LeaderF.
     <C-R> : switch between fuzzy search mode and regex mode.
     <C-F> : switch between full path search mode and name only search mode.
@@ -1152,4 +1198,5 @@ CHANGELOG                                       *leaderf-changelog*
 CREDITS                                         *leaderf-credits*
 
 ==============================================================================
-vim:tw=78:ts=4:ft=help:norl
+DIY_again
+DIY_2  vim:filetype=help:syntax=help:
