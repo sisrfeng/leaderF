@@ -1,60 +1,57 @@
-" ============================================================================
 " File:        Mru.vim
-" Description:
-" Author:      Yggdroot <archofortune@gmail.com>
 " Website:     https://github.com/Yggdroot
-" Note:
 " License:     Apache License, Version 2.0
-" ============================================================================
+
 
 if leaderf#versionCheck() == 0  " this check is necessary
     finish
-endif
+en
 
 exec g:Lf_py "from leaderf.mruExpl import *"
 
-function! leaderf#Mru#Maps()
+fun! leaderf#Mru#Maps()
     nmapclear <buffer>
-    nnoremap <buffer> <silent> <CR>          :exec g:Lf_py "mruExplManager.accept()"<CR>
-    nnoremap <buffer> <silent> o             :exec g:Lf_py "mruExplManager.accept()"<CR>
-    nnoremap <buffer> <silent> <2-LeftMouse> :exec g:Lf_py "mruExplManager.accept()"<CR>
-    nnoremap <buffer> <silent> x             :exec g:Lf_py "mruExplManager.accept('h')"<CR>
-    nnoremap <buffer> <silent> v             :exec g:Lf_py "mruExplManager.accept('v')"<CR>
-    nnoremap <buffer> <silent> t             :exec g:Lf_py "mruExplManager.accept('t')"<CR>
-    nnoremap <buffer> <silent> q             :exec g:Lf_py "mruExplManager.quit()"<CR>
+    nno      <buffer> <silent> <CR>          :exec g:Lf_py "mruExplManager.accept('t')"<CR>
+    nno      <buffer> <silent> o             :exec g:Lf_py "mruExplManager.accept()"<CR>
+    nno      <buffer> <silent> <2-LeftMouse> :exec g:Lf_py "mruExplManager.accept()"<CR>
+    nno      <buffer> <silent> x             :exec g:Lf_py "mruExplManager.accept('h')"<CR>
+    nno      <buffer> <silent> v             :exec g:Lf_py "mruExplManager.accept('v')"<CR>
+    nno      <buffer> <silent> t             :exec g:Lf_py "mruExplManager.accept('t')"<CR>
+    nno      <buffer> <silent> t             :exec g:Lf_py "mruExplManager.accept('t')"<CR>
+    nno      <buffer> <silent> q             :exec g:Lf_py "mruExplManager.quit()"<CR>
     " nnoremap <buffer> <silent> <Esc>         :exec g:Lf_py "mruExplManager.quit()"<CR>
-    nnoremap <buffer> <silent> i             :exec g:Lf_py "mruExplManager.input()"<CR>
-    nnoremap <buffer> <silent> <Tab>         :exec g:Lf_py "mruExplManager.input()"<CR>
-    nnoremap <buffer> <silent> <F1>          :exec g:Lf_py "mruExplManager.toggleHelp()"<CR>
-    nnoremap <buffer> <silent> d             :exec g:Lf_py "mruExplManager.deleteMru()"<CR>
-    nnoremap <buffer> <silent> s             :exec g:Lf_py "mruExplManager.addSelections()"<CR>
-    nnoremap <buffer> <silent> a             :exec g:Lf_py "mruExplManager.selectAll()"<CR>
-    nnoremap <buffer> <silent> c             :exec g:Lf_py "mruExplManager.clearSelections()"<CR>
-    nnoremap <buffer> <silent> p             :exec g:Lf_py "mruExplManager._previewResult(True)"<CR>
-    nnoremap <buffer> <silent> j             j:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
-    nnoremap <buffer> <silent> k             k:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
-    nnoremap <buffer> <silent> <Up>          <Up>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
-    nnoremap <buffer> <silent> <Down>        <Down>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
-    nnoremap <buffer> <silent> <PageUp>      <PageUp>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
-    nnoremap <buffer> <silent> <PageDown>    <PageDown>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
+    nno      <buffer> <silent> i             :exec g:Lf_py "mruExplManager.input()"<CR>
+    nno      <buffer> <silent> <Tab>         :exec g:Lf_py "mruExplManager.input()"<CR>
+    nno      <buffer> <silent> <F1>          :exec g:Lf_py "mruExplManager.toggleHelp()"<CR>
+    nno      <buffer> <silent> d             :exec g:Lf_py "mruExplManager.deleteMru()"<CR>
+    nno      <buffer> <silent> s             :exec g:Lf_py "mruExplManager.addSelections()"<CR>
+    nno      <buffer> <silent> a             :exec g:Lf_py "mruExplManager.selectAll()"<CR>
+    nno      <buffer> <silent> c             :exec g:Lf_py "mruExplManager.clearSelections()"<CR>
+    nno      <buffer> <silent> p             :exec g:Lf_py "mruExplManager._previewResult(True)"<CR>
+    nno      <buffer> <silent> j             j:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
+    nno      <buffer> <silent> k             k:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
+    nno      <buffer> <silent> <Up>          <Up>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
+    nno      <buffer> <silent> <Down>        <Down>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
+    nno      <buffer> <silent> <PageUp>      <PageUp>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
+    nno      <buffer> <silent> <PageDown>    <PageDown>:exec g:Lf_py "mruExplManager._previewResult(False)"<CR>
     if has("nvim")
-        nnoremap <buffer> <silent> <C-Up>    :exec g:Lf_py "mruExplManager._toUpInPopup()"<CR>
-        nnoremap <buffer> <silent> <C-Down>  :exec g:Lf_py "mruExplManager._toDownInPopup()"<CR>
-        nnoremap <buffer> <silent> <Esc>     :exec g:Lf_py "mruExplManager._closePreviewPopup()"<CR>
-    endif
+        nno      <buffer> <silent> <C-Up>    :exec g:Lf_py "mruExplManager._toUpInPopup()"<CR>
+        nno      <buffer> <silent> <C-Down>  :exec g:Lf_py "mruExplManager._toDownInPopup()"<CR>
+        nno      <buffer> <silent> <Esc>     :exec g:Lf_py "mruExplManager._closePreviewPopup()"<CR>
+    en
     if has_key(g:Lf_NormalMap, "Mru")
         for i in g:Lf_NormalMap["Mru"]
             exec 'nnoremap <buffer> <silent> '.i[0].' '.i[1]
         endfor
-    endif
-endfunction
+    en
+endf
 
-function! leaderf#Mru#NormalModeFilter(winid, key) abort
+fun! leaderf#Mru#NormalModeFilter(winid, key) abort
     let key = get(g:Lf_KeyDict, get(g:Lf_KeyMap, a:key, a:key), a:key)
 
     if key !=# "g"
         call win_execute(a:winid, "let g:Lf_Mru_is_g_pressed = 0")
-    endif
+    en
 
     if key ==# "j" || key ==? "<Down>"
         call win_execute(a:winid, "norm! j")
@@ -81,12 +78,12 @@ function! leaderf#Mru#NormalModeFilter(winid, key) abort
     elseif key ==# "g"
         if get(g:, "Lf_Mru_is_g_pressed", 0) == 0
             let g:Lf_Mru_is_g_pressed = 1
-        else
+        el
             let g:Lf_Mru_is_g_pressed = 0
             call win_execute(a:winid, "norm! gg")
             exec g:Lf_py "mruExplManager._cli._buildPopupPrompt()"
             redraw
-        endif
+        en
     elseif key ==# "G"
         call win_execute(a:winid, "norm! G")
         exec g:Lf_py "mruExplManager._cli._buildPopupPrompt()"
@@ -112,7 +109,7 @@ function! leaderf#Mru#NormalModeFilter(winid, key) abort
             exec g:Lf_py "mruExplManager._cli._buildPopupPrompt()"
             redraw
             exec g:Lf_py "mruExplManager._previewResult(False)"
-        endif
+        en
     elseif key ==? "<ScrollWheelUp>"
         call win_execute(a:winid, "norm! 3k")
         exec g:Lf_py "mruExplManager._cli._buildPopupPrompt()"
@@ -152,7 +149,7 @@ function! leaderf#Mru#NormalModeFilter(winid, key) abort
         exec g:Lf_py "mruExplManager._toUpInPopup()"
     elseif key ==? "<C-Down>"
         exec g:Lf_py "mruExplManager._toDownInPopup()"
-    endif
+    en
 
     return 1
-endfunction
+endf

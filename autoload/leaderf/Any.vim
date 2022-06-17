@@ -341,7 +341,7 @@ function! leaderf#Any#start(bang, args) abort
     if a:args == ""
 
     else
-        call leaderf#LfPy("anyHub.start(r''' ".a:args." ''', bang=".a:bang.")")
+        call leaderf#LfPy(  "anyHub.start(r''' ".a:args." ''', bang=".a:bang.")"  )
     endif
 endfunction
 
