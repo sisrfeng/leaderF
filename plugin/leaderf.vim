@@ -1,27 +1,19 @@
-" ============================================================================
-" File:        leaderf.vim
-" Description:
-" Author:      Yggdroot <archofortune@gmail.com>
-" Website:     https://github.com/Yggdroot
-" Note:
-" License:     Apache License, Version 2.0
-" ============================================================================
-
-if exists('g:leaderf_loaded') || &compatible
-    finish
-elseif v:version < 704 || v:version == 704 && has("patch330") == 0
-    echohl Error
-    echomsg "LeaderF requires Vim 7.4.330+."
-    echohl None
-    finish
-elseif !has('pythonx') && !has('python3') && !has('python')
-    echohl Error
-    echomsg "LeaderF requires Vim compiled with python and/or a compatible python version."
-    echohl None
-    finish
-el
-    let g:leaderf_loaded = 1
-en
+" check
+    if exists('g:leaderf_loaded') || &compatible
+        finish
+    elseif v:version < 704 || v:version == 704 && has("patch330") == 0
+        echohl Error
+        echomsg "LeaderF requires Vim 7.4.330+."
+        echohl None
+        finish
+    elseif !has('pythonx') && !has('python3') && !has('python')
+        echohl Error
+        echomsg "LeaderF requires Vim compiled with python and/or a compatible python version."
+        echohl None
+        finish
+    el
+        let g:leaderf_loaded = 1
+    en
 
 fun! s:InitVar(var, value)
     if !exists(a:var)
@@ -29,13 +21,13 @@ fun! s:InitVar(var, value)
     en
 endf
 
-call s:InitVar('g:Lf_ShortcutF', '<Leader>f')
-call s:InitVar('g:Lf_ShortcutB', '<Leader>b')
-call s:InitVar('g:Lf_WindowPosition', 'bottom')
-call s:InitVar('g:Lf_CacheDirectory', $HOME)
-call s:InitVar('g:Lf_MruBufnrs', [])
-call s:InitVar('g:Lf_PythonExtensions', {})
-call s:InitVar('g:Lf_PreviewWindowID', {})
+    call s:InitVar('g:Lf_ShortcutF'        , '<Leader>f')
+    call s:InitVar('g:Lf_ShortcutB'        , '<Leader>b')
+    call s:InitVar('g:Lf_WindowPosition'   , 'bottom')
+    call s:InitVar('g:Lf_CacheDirectory'   , $HOME)
+    call s:InitVar('g:Lf_MruBufnrs'        , [])
+    call s:InitVar('g:Lf_PythonExtensions' , {})
+    call s:InitVar('g:Lf_PreviewWindowID'  , {})
 
 fun! g:LfNoErrMsgMatch(expr, pat)
     try
@@ -107,20 +99,20 @@ fun! s:Normalize(filename)
     en
 endf
 
-augroup LeaderF_Mru
+aug  LeaderF_Mru
     au      BufAdd,BufEnter,BufWritePost * call lfMru#record(s:Normalize(expand('<afile>:p'))) |
                 \ call lfMru#recordBuffer(expand('<abuf>'))
-augroup END
+aug  END
 
-augroup LeaderF_Gtags
-    autocmd!
+aug  LeaderF_Gtags
+    au!
     if get(g:, 'Lf_GtagsAutoGenerate', 0) == 1
         au      BufRead * call leaderf#Gtags#updateGtags(expand('<afile>:p'), 0)
     en
     if get(g:, 'Lf_GtagsAutoUpdate', 1) == 1
         au      BufWritePost * call leaderf#Gtags#updateGtags(expand('<afile>:p'), 1)
     en
-augroup END
+aug  END
 
 " map
     no      <silent> <Plug>LeaderfFileTop        :<C-U>Leaderf file --top<CR>
@@ -141,31 +133,34 @@ augroup END
     no      <silent> <Plug>LeaderfMruCwdRight      :<C-U>Leaderf mru --right<CR>
     no      <silent> <Plug>LeaderfMruCwdFullScreen :<C-U>Leaderf mru --fullScreen<CR>
 
-    no      <Plug>LeaderfRgPrompt :<C-U>Leaderf rg -e<Space>
-    no      <Plug>LeaderfRgCwordLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 0, 0)<CR>
-    no      <Plug>LeaderfRgCwordLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 0, 1)<CR>
-    no      <Plug>LeaderfRgCwordRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 1, 0)<CR>
-    no      <Plug>LeaderfRgCwordRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 1, 1)<CR>
+    " rg
+        no      <Plug>LeaderfRgPrompt                 :<C-U>Leaderf rg -e<Space>
+        no      <Plug>LeaderfRgCwordLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 0, 0)<CR>
+        no      <Plug>LeaderfRgCwordLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 0, 1)<CR>
+        no      <Plug>LeaderfRgCwordRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 1, 0)<CR>
+        no      <Plug>LeaderfRgCwordRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(0, 0, 1, 1)<CR>
 
-    no      <Plug>LeaderfRgBangCwordLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 0, 0)<CR>
-    no      <Plug>LeaderfRgBangCwordLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 0, 1)<CR>
-    no      <Plug>LeaderfRgBangCwordRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 1, 0)<CR>
-    no      <Plug>LeaderfRgBangCwordRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 1, 1)<CR>
 
-    no      <Plug>LeaderfRgWORDLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 0, 0)<CR>
-    no      <Plug>LeaderfRgWORDLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 0, 0)<CR>
-    no      <Plug>LeaderfRgWORDRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 1, 0)<CR>
-    no      <Plug>LeaderfRgWORDRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 1, 1)<CR>
+        no      <Plug>LeaderfRgBangCwordLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 0, 0)<CR>
+        no      <Plug>LeaderfRgBangCwordLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 0, 1)<CR>
+        no      <Plug>LeaderfRgBangCwordRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 1, 0)<CR>
+        no      <Plug>LeaderfRgBangCwordRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(0, 1, 1, 1)<CR>
 
-    vno      <silent> <Plug>LeaderfRgVisualLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 0, 0)<CR>
-    vno      <silent> <Plug>LeaderfRgVisualLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 0, 1)<CR>
-    vno      <silent> <Plug>LeaderfRgVisualRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 1, 0)<CR>
-    vno      <silent> <Plug>LeaderfRgVisualRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 1, 1)<CR>
 
-    vno      <silent> <Plug>LeaderfRgBangVisualLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 0, 0)<CR>
-    vno      <silent> <Plug>LeaderfRgBangVisualLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 0, 1)<CR>
-    vno      <silent> <Plug>LeaderfRgBangVisualRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 1, 0)<CR>
-    vno      <silent> <Plug>LeaderfRgBangVisualRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 1, 1)<CR>
+        no      <Plug>LeaderfRgWORDLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 0, 0)<CR>
+        no      <Plug>LeaderfRgWORDLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 0, 0)<CR>
+        no      <Plug>LeaderfRgWORDRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 1, 0)<CR>
+        no      <Plug>LeaderfRgWORDRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(1, 0, 1, 1)<CR>
+
+        vno      <silent> <Plug>LeaderfRgVisualLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 0, 0)<CR>
+        vno      <silent> <Plug>LeaderfRgVisualLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 0, 1)<CR>
+        vno      <silent> <Plug>LeaderfRgVisualRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 1, 0)<CR>
+        vno      <silent> <Plug>LeaderfRgVisualRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(2, 0, 1, 1)<CR>
+
+        vno      <silent> <Plug>LeaderfRgBangVisualLiteralNoBoundary :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 0, 0)<CR>
+        vno      <silent> <Plug>LeaderfRgBangVisualLiteralBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 0, 1)<CR>
+        vno      <silent> <Plug>LeaderfRgBangVisualRegexNoBoundary   :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 1, 0)<CR>
+        vno      <silent> <Plug>LeaderfRgBangVisualRegexBoundary     :<C-U><C-R>=leaderf#Rg#startCmdline(2, 1, 1, 1)<CR>
 
     no      <Plug>LeaderfGtagsDefinition :<C-U><C-R>=leaderf#Gtags#startCmdline(0, 1, 'd')<CR><CR>
     no      <Plug>LeaderfGtagsReference :<C-U><C-R>=leaderf#Gtags#startCmdline(0, 1, 'r')<CR><CR>

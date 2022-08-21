@@ -170,18 +170,25 @@ g:Lf_DelimiterChar                              *g:Lf_DelimiterChar*
     characters to match the directory, type this character first.
     Default value is ';'.
 
-g:Lf_MruFileExclude                             *g:Lf_MruFileExclude*
-    Files you don't want LeaderF to record.
-    See |g:Lf_WildIgnore| for the usage of pattern.
-    e.g.
+mru
+    :LeaderfMru                                     *LeaderfMru*
+        Launch LeaderF to search Mru.
 
-    let g:Lf_MruFileExclude = ['*.so']
+    :LeaderfMruCwd                                  *LeaderfMruCwd*
+        Launch LeaderF to search Mru in current working directory.
 
-    Default value is [].
+    G:Lf_MruFileExclude                             *g:Lf_MruFileExclude*
+        Files you don't want LeaderF to record.
+        See |g:Lf_WildIgnore| for the usage of pattern.
+        e.g.
 
-g:Lf_MruMaxFiles                                *g:Lf_MruMaxFiles*
-    Specify the number of most recently used files you want LeaderF to record.
-    Default value is 100.
+        let g:Lf_MruFileExclude = ['*.so']
+
+        Default value is [].
+
+    g:Lf_MruMaxFiles                                *g:Lf_MruMaxFiles*
+        Specify the number of most recently used files you want LeaderF to record.
+        Default value is 100.
 
 g:Lf_HighlightIndividual                        *g:Lf_HighlightIndividual*
     Whether to highlight individual character of the input in the result.
@@ -603,46 +610,6 @@ g:Lf_HistoryEditPromptIfEmpty                   *g:Lf_HistoryEditPromptIfEmpty*
     the entered prompt is edited.
     Default value is 1.
 
-g:Lf_Rg                                         *g:Lf_Rg*
-    Use this option to specify the rg executable you use. If rg is not
-    in one of the directories in your $PATH environment variable, you should
-    set it by yourself. e.g.,
-
-    let g:Lf_Rg = 'C:\Windows\System32\rg.exe'
-
-    Default value is "rg".
-
-g:Lf_RgConfig                                   *g:Lf_RgConfig*
-    Specify a list of ripgrep configurations. For example,
-
-    let g:Lf_RgConfig = [
-        \ "--max-columns=150",
-        \ "--type-add web:*.{html,css,js}*",
-        \ "--glob=!git/*",
-        \ "--hidden"
-    \ ]
-
-    Default value is [].
-
-g:Lf_RgStorePattern                             *g:Lf_RgStorePattern*
-    Specify the register to store the search pattern when you exit LeaderF.
-    The pattern entered with `-e` of the `Leaderf rg` command is stored. Also,
-    patterns are converted to Vim's regexp.
-
-    For example, When there is one pattern:
-        When executed in `Leaderf rg -e "pat1"`, `/\v\cpat1` is stored.
-
-    For example, When there are multiple patterns:
-        If multiple patterns are specified, they will be joined with `|`.
-        When executed in `Leaderf rg -e "pat1" -e "pat2"`, `/\v\cpat1|pat2` is
-        stored.
-
-    Default value is "".
-
-g:Lf_RgHighlightInPreview                       *g:Lf_RgHighlightInPreview*
-    Specify whether to highlight searched words in preview window.
-
-    Default value is 1.
 
 g:Lf_MaxCount                                   *g:Lf_MaxCount*
     Specify the limit of the number of source entries. LeaderF will stop
@@ -1059,12 +1026,6 @@ USAGE                                           *leaderf-usage*
 :LeaderfBufferAll                               *LeaderfBufferAll*
     Same as LeaderfBuffer, except that the unlisted buffers are shown.
 
-:LeaderfMru                                     *LeaderfMru*
-    Launch LeaderF to search Mru.
-
-:LeaderfMruCwd                                  *LeaderfMruCwd*
-    Launch LeaderF to search Mru in current working directory.
-
 :LeaderfTag                                     *LeaderfTag*
     Launch LeaderF to navigate tags.
 
@@ -1116,35 +1077,6 @@ USAGE                                           *leaderf-usage*
 :LeaderfLocList                                 *LeaderfLocList*
     Launch LeaderF to navigate the location list.
 
-:LeaderfRgInteractive                           *LeaderfRgInteractive*
-    Launch LeaderF to use rg interactively.
-
-:LeaderfRgRecall                                *LeaderfRgRecall*
-    Recall last search of rg.
-
-Some handy maps for `Leaderf rg`:
-
-| Map                                        | Description
-| ---                                        | -----------
-| `<Plug>LeaderfRgPrompt`                      | shortcut for `:Leaderf rg -e<Space>`
-| `<Plug>LeaderfRgCwordLiteralNoBoundary`      | search word under cursor literally without `-w` option
-| `<Plug>LeaderfRgBangCwordLiteralNoBoundary`  | like `<Plug>LeaderfRgCwordLiteralNoBoundary`, but with a bang(`!`)
-                                             | e.g., `Leaderf! rg ...`
-| `<Plug>LeaderfRgCwordLiteralBoundary`        | search word under cursor literally with `-w` option
-| `<Plug>LeaderfRgBangCwordLiteralBoundary`    | like `<Plug>LeaderfRgCwordLiteralBoundary`, but with a bang(`!`)
-| `<Plug>LeaderfRgCwordRegexNoBoundary`        | search word under cursor treated as regex without `-w` option
-| `<Plug>LeaderfRgBangCwordRegexNoBoundary`    | like `<Plug>LeaderfRgCwordRegexNoBoundary`, but with a bang(`!`)
-| `<Plug>LeaderfRgCwordRegexBoundary`          | search word under cursor treated as regex with `-w` option
-| `<Plug>LeaderfRgBangCwordRegexBoundary`      | like `<Plug>LeaderfRgCwordRegexBoundary`, but with a bang(`!`)
-| `<Plug>LeaderfRgVisualLiteralNoBoundary`     | search visually selected text literally without `-w` option
-| `<Plug>LeaderfRgBangVisualLiteralNoBoundary` | like `<Plug>LeaderfRgVisualLiteralNoBoundary`, but with a bang(`!`)
-| `<Plug>LeaderfRgVisualLiteralBoundary`       | search visually selected text literally with `-w` option
-| `<Plug>LeaderfRgBangVisualLiteralBoundary`   | like `<Plug>LeaderfRgVisualLiteralBoundary`, but with a bang(`!`)
-| `<Plug>LeaderfRgVisualRegexNoBoundary`       | search visually selected text treated as regex without `-w` option
-| `<Plug>LeaderfRgBangVisualRegexNoBoundary`   | like `<Plug>LeaderfRgVisualRegexNoBoundary`, but with a bang(`!`)
-| `<Plug>LeaderfRgVisualRegexBoundary`         | search visually selected text treated as regex with `-w` option
-| `<Plug>LeaderfRgBangVisualRegexBoundary`     | like `<Plug>LeaderfRgVisualRegexBoundary`, but with a bang(`!`)
-
 Some handy maps for `Leaderf gtags`:
 
 | Map                                        | Description
@@ -1187,16 +1119,88 @@ Once LeaderF is launched:                       *prompt*  *leaderf-prompt*
     cmdHistory/searchHistory/command only mappings:
         <C-o> : edit command under cursor.
 
-==============================================================================
-FAQ                                             *leaderf-faq*
 
 
-==============================================================================
-CHANGELOG                                       *leaderf-changelog*
+=========
+rg
 
-==============================================================================
-CREDITS                                         *leaderf-credits*
+    options
+        g:Lf_Rg                                         *g:Lf_Rg*
+            Use this option to specify the rg executable you use.
+            If rg is not in one of the directories in your $PATH environment variable,
+            you should set it by
+            yourself.
+            e.g.,
 
-==============================================================================
+
+            let g:Lf_Rg = 'C:\Windows\System32\rg.exe'
+
+            Default value is "rg".
+
+        g:Lf_RgConfig                                   *g:Lf_RgConfig*
+            Specify a list of ripgrep configurations. For example,
+
+            let g:Lf_RgConfig = [
+                \ "--max-columns=150",
+                \ "--type-add web:*.{html,css,js}*",
+                \ "--glob=!git/*",
+                \ "--hidden"
+            \ ]
+
+            Default value is [].
+
+        g:Lf_RgStorePattern                             *g:Lf_RgStorePattern*
+            Specify the register to store the search pattern when you exit LeaderF.
+            The pattern entered with `-e` of the `Leaderf rg` command is stored. Also,
+            patterns are converted to Vim's regexp.
+
+            For example, When there is one pattern:
+                When executed in `Leaderf rg -e "pat1"`, `/\v\cpat1` is stored.
+
+            For example, When there are multiple patterns:
+                If multiple patterns are specified, they will be joined with `|`.
+                When executed in `Leaderf rg -e "pat1" -e "pat2"`, `/\v\cpat1|pat2` is
+                stored.
+
+            Default value is "".
+
+        g:Lf_RgHighlightInPreview                       *g:Lf_RgHighlightInPreview*
+            Specify whether to highlight searched words in preview window.
+
+            Default value is 1.
+
+    cmd~
+        :LeaderfRgInteractive                           *LeaderfRgInteractive*
+            Launch LeaderF to use rg interactively.
+
+        :LeaderfRgRecall                                *LeaderfRgRecall*
+            Recall last search of rg.
+
+    Some handy maps~
+
+        | Map                                        | Description
+        | ---                                        | -----------
+        | `<Plug>LeaderfRgPrompt`                      | shortcut for `:Leaderf rg -e<Space>`
+
+        | `<Plug>LeaderfRgCwordLiteralNoBoundary`      | search word under cursor literally without `-w` option
+        | `<Plug>LeaderfRgCwordLiteralBoundary`        | search word under cursor literally with `-w` option
+
+        | `<Plug>LeaderfRgBangCwordLiteralNoBoundary`  | like `<Plug>LeaderfRgCwordLiteralNoBoundary`, but with a bang(`!`)
+                                                     | e.g., `Leaderf! rg ...`
+        | `<Plug>LeaderfRgBangCwordLiteralBoundary`    | like `<Plug>LeaderfRgCwordLiteralBoundary`, but with a bang(`!`)
+        | `<Plug>LeaderfRgCwordRegexNoBoundary`        | search word under cursor treated as regex without `-w` option
+        | `<Plug>LeaderfRgBangCwordRegexNoBoundary`    | like `<Plug>LeaderfRgCwordRegexNoBoundary`, but with a bang(`!`)
+        | `<Plug>LeaderfRgCwordRegexBoundary`          | search word under cursor treated as regex with `-w` option
+        | `<Plug>LeaderfRgBangCwordRegexBoundary`      | like `<Plug>LeaderfRgCwordRegexBoundary`, but with a bang(`!`)
+        | `<Plug>LeaderfRgVisualLiteralNoBoundary`     | search visually selected text literally without `-w` option
+        | `<Plug>LeaderfRgBangVisualLiteralNoBoundary` | like `<Plug>LeaderfRgVisualLiteralNoBoundary`, but with a bang(`!`)
+        | `<Plug>LeaderfRgVisualLiteralBoundary`       | search visually selected text literally with `-w` option
+        | `<Plug>LeaderfRgBangVisualLiteralBoundary`   | like `<Plug>LeaderfRgVisualLiteralBoundary`, but with a bang(`!`)
+        | `<Plug>LeaderfRgVisualRegexNoBoundary`       | search visually selected text treated as regex without `-w` option
+        | `<Plug>LeaderfRgBangVisualRegexNoBoundary`   | like `<Plug>LeaderfRgVisualRegexNoBoundary`, but with a bang(`!`)
+        | `<Plug>LeaderfRgVisualRegexBoundary`         | search visually selected text treated as regex with `-w` option
+        | `<Plug>LeaderfRgBangVisualRegexBoundary`     | like `<Plug>LeaderfRgVisualRegexBoundary`, but with a bang(`!`)
+
+
 DIY_again
 DIY_2  vim:filetype=help:syntax=help:
